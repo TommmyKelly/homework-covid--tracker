@@ -29,8 +29,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
 
 
-
-
+var asc = 0
+var arr = []
 var newtype;
 var map;
 var infoWindow;
@@ -130,6 +130,22 @@ const showDataOnMap = (data, casesType="cases") => {
 
         mapCircles.push(countryCircle);
 
+        var cases = numeral(`${country.cases}`).format('0,0');
+        var recovered = numeral(`${country.recovered}`).format('0,0');
+        var deaths = numeral(`${country.deaths}`).format('0,0');
+        console.log(country.countryInfo.flag)
+        Tableres = {
+          flag: country.countryInfo.flag,  
+          country: country.country,
+          cases: cases,
+          recovered: recovered,
+          deaths: deaths,
+        }
+
+      arr.push(Tableres)
+      
+      Tableres += Tableres
+
         var html = `
             <div class="info-container">
                 <div class="info-flag" style="background-image: url(${country.countryInfo.flag});">
@@ -204,3 +220,81 @@ function filtertable() {
       }       
     }
   }
+
+  sortNewTable = (att,col)=>{
+     
+    if (asc == 2) {asc = -1;} else {asc = 2;}
+    if (asc ==2){
+     for (let j = 0; j < arr.length; j++){
+       let max_Obj = arr[j]
+       let max_location = j;
+       for (let i = j;i < arr.length;i++){
+         if (arr[i][att] < max_Obj[att]){
+          max_Obj = arr[i]
+          max_location = i
+         }
+       }
+       arr[max_location] = arr[j]
+       arr[j] = max_Obj
+     }
+     
+
+     displayNewTable(arr,col)
+
+     return 
+    }
+else {
+  for (let j = 0; j < arr.length; j++){
+    let max_Obj = arr[j]
+    let max_location = j;
+    for (let i = j;i < arr.length;i++){
+      if (arr[i][att] > max_Obj[att]){
+       max_Obj = arr[i]
+       max_location = i
+      }
+    }
+    arr[max_location] = arr[j]
+    arr[j] = max_Obj
+  }
+  
+
+  displayNewTable(arr,col)
+
+} 
+
+   }
+   displayNewTable = (arr,col) =>{
+    var dataInfo = ""
+     for (i = 0;i<arr.length-1;i++){
+
+     
+    dataInfoadd = `
+    
+    <tr>
+            <td class="first-td"><img class="flag-table" src= ${arr[i].flag}></td>
+            <td>${arr[i].country}</td>
+            <td>${arr[i].cases}</td>
+            <td>${arr[i].recovered}</td>
+            <td>${arr[i].deaths}</td>
+    </tr>
+    
+  `
+
+    dataInfo = dataInfo + dataInfoadd
+    
+  };
+  document.getElementById('table-data').innerHTML = dataInfo
+
+  
+
+  
+
+  hdr = document.getElementById('tip').rows[0].cells[col];
+  $('.sortorder').remove();
+	if (asc == -1) {
+		$(hdr).html($(hdr).html() + '<span class="sortorder">▲</span>');
+		} else {
+		$(hdr).html($(hdr).html() + '<span class="sortorder">▼</span>');
+	}
+     
+   }
