@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
 }, false);
     
 
-
+var arrfill = 0
 var asc = 0
 var arr = []
 var newtype;
@@ -130,22 +130,25 @@ const showDataOnMap = (data, casesType="cases") => {
 
         mapCircles.push(countryCircle);
 
-        var cases = numeral(`${country.cases}`).format('0,0');
-        var recovered = numeral(`${country.recovered}`).format('0,0');
-        var deaths = numeral(`${country.deaths}`).format('0,0');
-        console.log(country.countryInfo.flag)
-        Tableres = {
-          flag: country.countryInfo.flag,  
-          country: country.country,
-          cases: cases,
-          recovered: recovered,
-          deaths: deaths,
-        }
-
-      arr.push(Tableres)
+        if(arrfill == 0){
+            var cases = numeral(`${country.cases}`).format('0,0');
+            var recovered = numeral(`${country.recovered}`).format('0,0');
+            var deaths = numeral(`${country.deaths}`).format('0,0');
+            console.log(country.countryInfo.flag)
+            Tableres = {
+            flag: country.countryInfo.flag,  
+            country: country.country,
+            cases: cases,
+            recovered: recovered,
+            deaths: deaths,
+            }
+            
+        
+            arr.push(Tableres)
       
-      Tableres += Tableres
-
+            Tableres += Tableres
+        }
+       
         var html = `
             <div class="info-container">
                 <div class="info-flag" style="background-image: url(${country.countryInfo.flag});">
@@ -178,7 +181,7 @@ const showDataOnMap = (data, casesType="cases") => {
         })
 
     })
-
+    arrfill = 1
 }
 
 const showDataInTable = (data) => {
@@ -222,6 +225,8 @@ function filtertable() {
   }
 
   sortNewTable = (att,col)=>{
+
+    
      
     if (asc == 2) {asc = -1;} else {asc = 2;}
     if (asc ==2){
