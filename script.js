@@ -44,8 +44,8 @@ var casesTypeColors = {
 }
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: 39.8283, lng: -98.5795},
-        zoom: 3,
+        center: {lat: 26.3351, lng: 17.2283},
+        zoom: 2,
         styles: mapStyle
     });
     infoWindow = new google.maps.InfoWindow();
