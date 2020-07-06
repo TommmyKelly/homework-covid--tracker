@@ -131,16 +131,16 @@ const showDataOnMap = (data, casesType="cases") => {
         mapCircles.push(countryCircle);
 
         if(arrfill == 0){
-            var cases = numeral(`${country.cases}`).format('0,0');
-            var recovered = numeral(`${country.recovered}`).format('0,0');
-            var deaths = numeral(`${country.deaths}`).format('0,0');
-            console.log(country.countryInfo.flag)
+            // var cases = numeral(`${country.cases}`).format('0,0');
+            // var recovered = numeral(`${country.recovered}`).format('0,0');
+            // var deaths = numeral(`${country.deaths}`).format('0,0');
+            //console.log(country.countryInfo.flag)
             Tableres = {
             flag: country.countryInfo.flag,  
             country: country.country,
-            cases: cases,
-            recovered: recovered,
-            deaths: deaths,
+            cases: country.cases,
+            recovered: country.recovered,
+            deaths: country.deaths,
             }
             
         
@@ -157,13 +157,13 @@ const showDataOnMap = (data, casesType="cases") => {
                     ${country.country}
                 </div>
                 <div class="info-confirmed">
-                    Total: ${country.cases}
+                    Total: ${thousands_separators(country.cases)}
                 </div>
                 <div class="info-recovered">
-                    Recovered: ${country.recovered}
+                    Recovered: ${thousands_separators(country.recovered)}
                 </div>
                 <div class="info-deaths">   
-                    Deaths: ${country.deaths}
+                    Deaths: ${thousands_separators(country.deaths)}
                 </div>
             </div>
         `
@@ -187,17 +187,17 @@ const showDataOnMap = (data, casesType="cases") => {
 const showDataInTable = (data) => {
     var html = '';
     data.forEach((country)=>{
-        var cases = numeral(`${country.cases}`).format('0,0');
-        var recovered = numeral(`${country.recovered}`).format('0,0');
-        var deaths = numeral(`${country.deaths}`).format('0,0');
+        // var cases = numeral(`${country.cases}`).format('0,0');
+        // var recovered = numeral(`${country.recovered}`).format('0,0');
+        // var deaths = numeral(`${country.deaths}`).format('0,0');
 
         html += `
         <tr>
             <td class="first-td"><img class="flag-table" src= ${country.countryInfo.flag}></td>
-            <td>${country.country}</td>
-            <td>${cases}</td>
-            <td>${recovered}</td>
-            <td>${deaths}</td>
+            <td>${thousands_separators(country.country)}</td>
+            <td>${thousands_separators(country.cases)}</td>
+            <td>${thousands_separators(country.recovered)}</td>
+            <td>${thousands_separators(country.deaths)}</td>
         </tr>
         `
     })
@@ -277,10 +277,10 @@ else {
     
     <tr>
             <td class="first-td"><img class="flag-table" src= ${arr[i].flag}></td>
-            <td>${arr[i].country}</td>
-            <td>${arr[i].cases}</td>
-            <td>${arr[i].recovered}</td>
-            <td>${arr[i].deaths}</td>
+            <td>${thousands_separators(arr[i].country)}</td>
+            <td>${thousands_separators(arr[i].cases)}</td>
+            <td>${thousands_separators(arr[i].recovered)}</td>
+            <td>${thousands_separators(arr[i].deaths)}</td>
     </tr>
     
   `
@@ -302,4 +302,11 @@ else {
 		$(hdr).html($(hdr).html() + '<span class="sortorder">▼</span>');
 	}
      
+   }
+
+   function thousands_separators(num)
+   {
+     var num_parts = num.toString().split(".");
+     num_parts[0] = num_parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+     return num_parts.join(".");
    }
