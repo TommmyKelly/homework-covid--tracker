@@ -92,6 +92,16 @@ const buildChart = (chartData,type="Cases",color="1d2c4d") => {
 }
 
 const buildPieChart = (data) => {
+    total_number = document.querySelector('.total-number');
+    active_number = document.querySelector('.active-number');
+    recovered_number = document.querySelector('.recovered-number');
+    deaths_number = document.querySelector('.deaths-number');
+
+    total_number.innerText = numeral(`${data.cases}`).format('0,0');
+    active_number.innerText = numeral(`${data.active}`).format('0,0');
+    recovered_number.innerText = numeral(`${data.recovered}`).format('0,0')
+    deaths_number.innerText = numeral(`${data.deaths}`).format('0,0')
+
     var ctx = document.getElementById('myPieChart').getContext('2d');
     var myPieChart = new Chart(ctx, {
         type: 'pie',
