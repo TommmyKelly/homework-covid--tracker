@@ -38,16 +38,22 @@ const buildChartData = (data,type) => {
             chartData.push(newDataPoint);
         }  
     } 
+    
     return chartData;
+    
     
 }
 
 const buildChart = (chartData,type="Cases",color="1d2c4d") => {
     
-    console.log("All if good");
+    
+
+
     var timeFormat = 'MM/DD/YY';
     var ctx = document.getElementById('myChart').getContext('2d');
-    var chart = new Chart(ctx, {
+    
+    chart = new Chart(ctx, {
+        
         // The type of chart we want to create
         type: 'line',
 
@@ -57,10 +63,12 @@ const buildChart = (chartData,type="Cases",color="1d2c4d") => {
                 label: `Total ${type}`,
                 backgroundColor: color,
                 borderColor: color,
-                data: chartData
+                data: chartData,
+                
             }]
         },
-
+        
+       
         // Configuration options go here
         options: {
             // maintainAspectRatio: true,
@@ -82,25 +90,19 @@ const buildChart = (chartData,type="Cases",color="1d2c4d") => {
                     ticks: {
                         // Include a dollar sign in the ticks
                         callback: function(value, index, values) {
-                            return numeral(value).format('0,0');
+                            return numeral(value).format('0a');
                         }
                     }
                 }]
             }
         }
+        
     });
+    
 }
 
 const buildPieChart = (data) => {
-    total_number = document.querySelector('.total-number');
-    active_number = document.querySelector('.active-number');
-    recovered_number = document.querySelector('.recovered-number');
-    deaths_number = document.querySelector('.deaths-number');
-
-    total_number.innerText = numeral(`${data.cases}`).format('0,0');
-    active_number.innerText = numeral(`${data.active}`).format('0,0');
-    recovered_number.innerText = numeral(`${data.recovered}`).format('0,0')
-    deaths_number.innerText = numeral(`${data.deaths}`).format('0,0')
+    
 
     var ctx = document.getElementById('myPieChart').getContext('2d');
     var myPieChart = new Chart(ctx, {
@@ -108,9 +110,11 @@ const buildPieChart = (data) => {
         data: {
             datasets: [{
                 data: [
+                    
                     data.active, 
                     data.recovered, 
-                    data.deaths
+                    data.deaths,
+                    
                 ],
                 backgroundColor: [
                     '#9d80fe',
@@ -130,6 +134,9 @@ const buildPieChart = (data) => {
             // maintainAspectRatio: true,
             maintainAspectRatio: true,
             responsive: true,
-        }
+        },
+        
+        
+    
     });
 }

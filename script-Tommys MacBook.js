@@ -4,40 +4,32 @@ window.onload = () => {
     getCountryData();
     getHistoricalData();
     getWorldCoronaData();
-    loadSearchBox();
     var filtertext = document.querySelector('#myInput')
     filtertext.addEventListener('input',filtertable)
     filtertext.onblur = function(){
         filtertext.value = ""
     }
     filtertext.onfocus = function(){
-        filtertext = document.querySelector('#myInput')
-        filtertext.value = ""
         x = document.querySelector(".dropdown-content")
         x.style.display = 'block'
-        resetDropdownValues()
         filtertable()
         for (i=0;i < allInfos.length;i++){
             allInfos[i].close()
         }
         map.setZoom(2)
-       
     }
     
-    window.addEventListener('click',clickOutside)
-
-    // var filtertext2 = document.querySelector('#myInput2')
-    // filtertext2.addEventListener('input',filtertable2)
-    // filtertext2.onblur = function(){
-    //     filtertext2.value = ""
-    // }
-    getNewsFeed()
     
+
+    var filtertext2 = document.querySelector('#myInput2')
+    filtertext2.addEventListener('input',filtertable2)
+    filtertext2.onblur = function(){
+        filtertext2.value = ""
+    }
+    getNewsFeed()
 }
-setTimeout(checkModal,10000)
 // window.addEventListener('click',dropdown)
 document.addEventListener('DOMContentLoaded', function() {
-    
     var tooltips = document.querySelector('.tooltip-span');
     var tableContainer = document.querySelector('.table-container');
     tableContainer.document.addEventListener('mouseover',(e)=>{
@@ -55,8 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // };
     })
 }, false);
-
- 
+    
 var infofill = 0
 var arrfill = 0
 var allInfos = []
@@ -187,20 +178,6 @@ const getCountryData = () => {
         coronaGlobalData = data;
         showDataOnMap(data);
         showDataInTable(data);
-    })
-}
-const loadSearchBox = () => {
-    var searchHTML = "";
-    fetch("https://corona.lmao.ninja/v2/countries")
-    .then((response)=>{
-        return response.json()
-    }).then((data)=>{
-       
-        data.forEach((country)=>{
-            searchHTML += `<a onclick="addTextToinput(this)" href="#">${country.country}</a>`
-        })
-        document.getElementById('myDropdown').innerHTML = searchHTML
-        
     })
 }
 
@@ -554,7 +531,7 @@ const refreash = ()=>{
     var filtertext = document.querySelector('#myInput')
     var filtertext2 = document.querySelector('#myInput2')
     filtertext.value = ""
-    // filtertext2.value = ""
+    filtertext2.value = ""
     for (i=0;i < allInfos.length;i++){
         allInfos[i].close()
     }
@@ -569,7 +546,7 @@ const dropdown = (e)=>{
     if(e.target.parentElement.classList.value != "col dropdown"){
         x.style.display = 'none'
     }
-    
+   
 }
 function filterFunction() {
     var input, filter, ul, li, a, i;
@@ -587,47 +564,7 @@ function filterFunction() {
     }
   }
   const addTextToinput = (item)=>{
-    
-    input = document.getElementById("myInput")
-    input.value = item.innerText
-    filtertable()
-    arr.forEach((countryItem)=>{
-        if (countryItem.country == input.value){
-            lat = countryItem.lat
-            lng = countryItem.lng
-            map.setCenter({lat:lat,lng:lng})
-            map.setZoom(3)
-            openWindow(input.value)
-        }
-    })
-  }
-
-  const resetDropdownValues = ()=>{
-    div = document.getElementById("myDropdown");
-    a = div.getElementsByTagName("a");
-    for (i = 0;i < a.length;i++){
-        a[i].style.display = ""
-    }
-  }
-
-  const closeModal=()=>{
-     
-     modal.style.display = 'none'
-     localStorage.setItem('helpViewed','ok')
-  }
-
-  function checkModal () {
-      
-    if (localStorage.getItem('helpViewed') == null){
-        
-     modal.style.display = 'flex'
-     
-    }
-  }
-  function clickOutside  (e){
-     
-    if(e.target == modal){
-        modal.style.display = 'none'
-        localStorage.setItem('helpViewed','ok')
-    }
+    console.log(item.textContent)
+    input = document.getElementById("myInput");
+    input = item.textContent
   }
