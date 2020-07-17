@@ -100,7 +100,7 @@ body{
     /* color: white; */
 }
 
-.active .highlight{
+.activemap .highlight{
     background-color: #666666;
     height: 8%;
     width: 100%;
@@ -301,6 +301,7 @@ body{
 }
 .dropdown{
     padding-left: 0;
+    padding-right: 0;
 }
 .dropdown-content a {
     color: black;
@@ -360,6 +361,9 @@ body{
    .input-group2{
     display: flex;
     } */
+    a.twitter-timeline{
+        width: 100vh !important;
+    }
     .hide{
         display: none;
     }

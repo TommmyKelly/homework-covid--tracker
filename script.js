@@ -26,33 +26,26 @@ window.onload = () => {
     
     window.addEventListener('click',clickOutside)
 
-    // var filtertext2 = document.querySelector('#myInput2')
-    // filtertext2.addEventListener('input',filtertable2)
-    // filtertext2.onblur = function(){
-    //     filtertext2.value = ""
-    // }
+    
     getNewsFeed()
     
 }
 setTimeout(checkModal,10000)
-// window.addEventListener('click',dropdown)
+
 document.addEventListener('DOMContentLoaded', function() {
     
     var tooltips = document.querySelector('.tooltip-span');
     var tableContainer = document.querySelector('.table-container');
     tableContainer.document.addEventListener('mouseover',(e)=>{
 
-        // if(e.target.parentElement.parentElement = 'tr'){
+        
         
         var x = (e.clientX + 20) + 'px',
             y = (e.clientY + 20) + 'px';
-        // for (var i = 0; i < tooltips.length; i++) {
-        //     tooltips[i].style.top = y;
-        //     tooltips[i].style.left = x;
-        // }
+        
         tooltips.style.top = y;
         tooltips.style.top = x;
-    // };
+    
     })
 }, false);
 
@@ -94,19 +87,21 @@ const clearLineChart = (casesType)=>{
  changeDataSelection(casesType)
 }
 
-function toggleActive(element,color,num){
+function toggleActive(element,color,num,type){
     
-var status = document.querySelectorAll('.active')
+var status = document.querySelectorAll('.activemap')
 highlight = document.querySelectorAll('.highlight')
 
 for(i = 0;i<status.length;i++){
-    status[i].classList.toggle('active')
+    status[i].classList.toggle('activemap')
    
 }
-element.classList.toggle('active')
+element.classList.toggle('activemap')
 
 highlight[num].style.background = color;
 
+  clearLineChart(type)
+  getHistoricalData(type)
 }
 
 const clearTheMap = () => {
@@ -221,7 +216,7 @@ const loadButtons=(data)=>{
     deaths_number = document.querySelector('.deaths-number');
 
     total_number.innerText = numeral(`${data.cases}`).format('0a').toUpperCase();
-    //active_number.innerText = numeral(`${data.active}`).format('0,0');
+   
     recovered_number.innerText = numeral(`${data.recovered}`).format('0a').toUpperCase()
     deaths_number.innerText = numeral(`${data.deaths}`).format('0a').toUpperCase()
     //------------------------------------------------------
@@ -275,10 +270,7 @@ const showDataOnMap = (data, casesType="cases") => {
         mapCircles.push(countryCircle);
 
         if(arrfill == 0){
-            // var cases = numeral(`${country.cases}`).format('0,0');
-            // var recovered = numeral(`${country.recovered}`).format('0,0');
-            // var deaths = numeral(`${country.deaths}`).format('0,0');
-            //console.log(country.countryInfo.flag)
+            
             Tableres = {
             flag: country.countryInfo.flag,  
             country: country.country,
@@ -319,7 +311,7 @@ const showDataOnMap = (data, casesType="cases") => {
             position: countryCircle.center,
             title: country.country
         });
-        /// push to new array to find info window
+        
         if (infofill == 0){
              allInfos.push(infoWindow)
         }
@@ -339,9 +331,7 @@ const showDataOnMap = (data, casesType="cases") => {
 const showDataInTable = (data) => {
     var html = '';
     data.forEach((country)=>{
-        // var cases = numeral(`${country.cases}`).format('0,0');
-        // var recovered = numeral(`${country.recovered}`).format('0,0');
-        // var deaths = numeral(`${country.deaths}`).format('0,0');
+       
 
         html += `
         <tr>
@@ -554,7 +544,7 @@ const refreash = ()=>{
     var filtertext = document.querySelector('#myInput')
     var filtertext2 = document.querySelector('#myInput2')
     filtertext.value = ""
-    // filtertext2.value = ""
+    
     for (i=0;i < allInfos.length;i++){
         allInfos[i].close()
     }

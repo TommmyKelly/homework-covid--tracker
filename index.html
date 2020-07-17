@@ -24,9 +24,9 @@
       <P>Tips for useing this site.</P>
       <br>
       <ul>
-      <li>Click on the table headers to sort the table by that table column.</li>
-      <li>Click the column header a second to reverse the sort order.</li>
-      <li>Click on a table row to show that country on the map</li>
+      <li>Click on the table headers to sort the table by that column.</li>
+      <li>Click the column header a second to reverse the sort order for that column.</li>
+      <li>Click on a table row to show that country on the map.</li>
       </ul>
     </div>
   </div>
@@ -38,7 +38,7 @@
             <h1>Covid-19</h1>
             <h4>Coronavirus</h4>
           </div>
-          <div class="col-sm-12  col-md search-container">
+          <div class="col-sm-12  col-md search-container mb-2 mb-lg-0">
             <div class="input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-search"></i></span>
@@ -47,13 +47,7 @@
                 <input type="text" autocomplete="off" onkeyup="filterFunction()" id="myInput" class="form-control" placeholder="Search Table..." aria-label="Search Location" aria-describedby="basic-addon1">
                 <div id="myDropdown" class="dropdown-content">
                   
-                  <!-- <a onclick="addTextToinput(this)" href="#about">Ireland</a>
-                  <a href="#base">Base</a>
-                  <a href="#blog">Blog</a>
-                  <a href="#contact">Contact</a>
-                  <a href="#custom">Custom</a>
-                  <a href="#support">Support</a>
-                  <a href="#tools">Tools</a> -->
+                  
                 </div>
               </div>
             </div>
@@ -61,8 +55,8 @@
         </div>
         
         <div class="row stats-container">
-          <div class="col-sm-12 col-md-12 col-lg-4">
-            <div class="card cases active" onclick=" toggleActive(this,'#666666',0),clearLineChart('cases'),getHistoricalData('cases')">
+          <div class="col-sm-12 col-md-12 col-lg-4 mb-2 mb-lg-0">
+            <div class="card cases activemap" onclick=" toggleActive(this,'#666666',0,'cases')">
               <div class="card-body">
                 <div class="highlight"></div>
                 <h8 class="card-title">Total Cases</h8>
@@ -71,16 +65,10 @@
               </div>
             </div>
           </div>
-          <!-- <div class="col">
-            <div class="card active-cases-card" onclick="toggleActive(this),changeDataSelection('active'),getHistoricalData('active')">
-              <div class="card-body">
-                <h5 class="card-title">Active Cases</h5>
-                <h6 class="card-subtitle mb-2 active-number"></h6>
-              </div>
-            </div>
-          </div> -->
-          <div class="col-sm-12 col-md-12 col-lg-4">
-            <div class="card recovered" onclick=" toggleActive(this,'#B5E7AA',1),clearLineChart('recovered'),getHistoricalData('recovered')">
+          
+
+          <div class="col-sm-12 col-md-12 col-lg-4 mb-2 mb-lg-0">
+            <div class="card recovered " onclick=" toggleActive(this,'#B5E7AA',1,'recovered')">
               <div class="card-body">
                 <div class="highlight recovered"></div>
                 <h8 class="card-title">Recovered</h8>
@@ -90,7 +78,7 @@
             </div>
           </div>
           <div class="col-sm-12 col-md-12 col-lg-4">
-            <div class="card deaths" onclick=" toggleActive(this,'#F6595A',2),clearLineChart('deaths'),getHistoricalData('deaths')">
+            <div class="card deaths" onclick=" toggleActive(this,'#F6595A',2,'deaths')">
               <div class="card-body">
                 <div class="highlight"></div>
                 <h8 class="card-title">Deaths</h8>
@@ -118,9 +106,7 @@
             </div>
           </div>  
           
-          <!-- <div class=" p-3 col1" style="width: 48%;">
-            <canvas id="myPieChart"></canvas>
-          </div> -->
+         
         </div>
 
         <div class="row youtube-container mt-3">
@@ -134,22 +120,16 @@
 
 
           <div class="car-container">
-            <div id="carouselExampleIndicators" class="carousel slide" style="min-height: 300px;" data-ride="carousel">
-              <ol class="carousel-indicators">
-                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                <!-- <li data-target="#carouselExampleIndicators" data-slide-to="2"></li> -->
-              </ol>
+            <div id="carouselExampleIndicators" class="carousel slide"  data-ride="carousel">
+              
               <div class="carousel-inner">
                 <div class="carousel-item active">
-                  <img src="images/cropped-COVID-19-landscape.png" class="d-block w-100" alt="...">
+                  <img src="images/image2.png" class="d-block w-100" alt="...">
                 </div>
                 <div class="carousel-item">
                   <img src="images/covid19web.png" class="d-block w-100" alt="...">
                 </div>
-                <!-- <div class="carousel-item">
-                  <img src="images/01-300x158.jpg" class="d-block w-100" alt="...">
-                </div> -->
+               
               </div>
               <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -166,12 +146,7 @@
       
       <div class=" col-sm-12 col-md-6 col-lg-5 side-panel-container my-3">
        
-          <!-- <div class="col-sm-12  input-group2">
-            <div class="input-group-prepend">
-              <span class="input-group-text"><i class="fas fa-search"></i></span>
-            </div>
-            <input type="text" id="myInput2" class="form-control" placeholder="Search Table..." aria-label="Search Location" aria-describedby="basic-addon1">
-          </div> -->
+          
        
         <div class="table-container">
           <table id="tip" title="Scroll to see more, or click to see on map " class="table ">
@@ -228,50 +203,7 @@
       
     </div>
   </div>
-    <!-- <div id="nav">
-
-    </div> -->
-    <!-- <div class="map-info">
-        <div id="map"></div>
-
-    </div> -->
-    <!-- <div class="data-info">
-      <div class="country-data">
-        <table class="table table-striped table-dark">
-          <thead>
-            <tr>
-              <th scope="col">Country Name</th>
-              <th scope="col">Cases</th>
-              <th scope="col">Recovered</th>
-              <th scope="col">Deaths</th>
-            </tr>
-          </thead>
-          <tbody id="table-data">
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Larry</td>
-              <td>the Bird</td>
-              <td>@twitter</td>
-            </tr>
-          </tbody>
-        </table>
-      </div> -->
-      <!-- <div class="chart-data">
-        <canvas id="myChart"></canvas>
-      </div>
-    </div> -->
+   
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJ7VvobsIYLr3Pe6cTNUnIUvzgpV2Na-o&callback=initMap"
     async defer></script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
